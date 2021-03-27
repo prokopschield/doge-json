@@ -17,5 +17,13 @@
 	"license": "GPL-v3.0-or-later",
 	"bin": {
 		"doge-json": "lib/cli.js"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/prokopschield/doge-json.git"
+	},
+	"bugs": {
+		"url": "https://github.com/prokopschield/doge-json/issues"
+	},
+	"homepage": "https://github.com/prokopschield/doge-json#readme"
 }

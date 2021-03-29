@@ -1,6 +1,6 @@
 {
 	"name": "doge-json",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Less verbose JSON read/write",
 	"main": "lib/index",
 	"directories": {

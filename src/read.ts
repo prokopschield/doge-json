@@ -10,7 +10,7 @@ import {
 	resolve,
 } from 'path';
 
-export function read (file: string) {
+export function read (file: string): any {
 	if (!existsSync(file)) {
 		const dir = resolve(file, '..');
 		const base = basename(file);

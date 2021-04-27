@@ -1,9 +1,4 @@
-import {
-	existsSync,
-	readFileSync,
-	readdirSync,
-	statSync,
-} from 'fs';
+import fs from './fs-polyfill';
 
 import {
 	basename,
@@ -11,15 +6,15 @@ import {
 } from 'path';
 
 export function read (file: string): any {
-	if (!existsSync(file)) {
+	if (!fs.existsSync(file)) {
 		const dir = resolve(file, '..');
 		const base = basename(file);
-		const rd = readdirSync(dir)
+		const rd = fs.readdirSync(dir)
 		.filter(a => a.includes(base))
 		if (rd.length) {
 			for (const filename of rd) {
 				const tfile = resolve(dir, filename);
-				const stat = statSync(tfile);
+				const stat = fs.statSync(tfile);
 				if (!stat.isDirectory()) {
 					file = tfile;
 					break;
@@ -27,8 +22,8 @@ export function read (file: string): any {
 			}
 		}
 	}
-	if (existsSync(file)) {
-		var data = readFileSync(file, 'utf-8');
+	if (fs.existsSync(file)) {
+		var data = fs.readFileSync(file, 'utf-8');
 		try {
 			data = JSON.parse(data);
 		} catch (e) {}

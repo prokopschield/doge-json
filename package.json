@@ -1,23 +1,17 @@
 {
 	"name": "doge-json",
-	"version": "1.0.1",
 	"description": "Less verbose JSON read/write",
+	"version": "1.0.2",
 	"main": "lib/index",
+	"author": "Prokop Schield",
+	"license": "GPL-3.0-or-later",
 	"directories": {
 		"lib": "lib"
 	},
 	"devDependencies": {
 		"@types/node": ">=14.14.35"
 	},
-	"scripts": {
-		"start": "node lib/cli"
-	},
 	"keywords": [],
-	"author": "Prokop Schield",
-	"license": "GPL-v3.0-or-later",
-	"bin": {
-		"doge-json": "lib/cli.js"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/prokopschield/doge-json.git"

@@ -1,15 +1,33 @@
-import encode_annoying from "./encode-annoying";
+import { normalize_object } from './normalize-object';
+import { map, set } from './transforms';
 
 /**
- * Encode something
+ * Encode an annoying thing
+ * 
+ * Deals with recursive objects, symbols, etc.
+ * 
  * @param thing Some thing
- * @returns The JSON-encoded thing
+ * @returns the JSON reprezentation of the thing
  */
 export function encode (thing: any): string {
-	try {
-		return JSON.stringify(thing, void null, '\t') + '\n';
-	} catch (error) {
-		return encode_annoying(thing);
+	if (thing instanceof Map) return encode(map(thing));
+	if (thing instanceof Set) return encode(set(thing));
+	if (
+		(typeof thing === 'boolean')
+	||	(typeof thing === 'number')
+	||	(typeof thing === 'bigint')
+	) {
+		return `${thing}`;
+	} else if (
+		(typeof thing === 'string')
+	||	(typeof thing === 'symbol')
+	||	(typeof thing === 'function')
+	) {
+		return JSON.stringify(thing.toString())
+	} else if (thing && typeof thing === 'object') {
+		return JSON.stringify(normalize_object(thing), null, '\t') + '\n';
+	} else {
+		return 'null';
 	}
 }
 

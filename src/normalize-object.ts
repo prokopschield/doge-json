@@ -1,5 +1,5 @@
 import { decode } from './decode';
-import { encode_annoying } from './encode-annoying';
+import { encode } from './encode';
 
 export interface NormalizedObject {
 	[field: string]: Normalized | string;
@@ -23,7 +23,7 @@ export function normalize_object (o: object, stack?: object[]): Normalized {
 		return o.map(a => (
 			(typeof a === 'object')
 			? normalize_object(a)
-			: decode(encode_annoying(a))
+			: decode(encode(a))
 		));
 	} else {
 		const normalized: NormalizedObject = {};
@@ -37,7 +37,7 @@ export function normalize_object (o: object, stack?: object[]): Normalized {
 					stack.pop();
 				}
 			} else {
-				normalized[field] = decode(encode_annoying(value));
+				normalized[field] = decode(encode(value));
 			}
 		}
 		return normalized;

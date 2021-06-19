@@ -5,6 +5,11 @@ import {
 	resolve,
 } from 'path';
 
+/**
+ * Read and parse a JSON file
+ * @param file path to file
+ * @returns the object
+ */
 export function read (file: string): any {
 	try {
 		if (!fs.existsSync(file)) {

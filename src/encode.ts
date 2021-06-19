@@ -5,7 +5,7 @@ import encode_annoying from "./encode-annoying";
  * @param thing Some thing
  * @returns The JSON-encoded thing
  */
-export function encode (thing: unknown): string {
+export function encode (thing: any): string {
 	try {
 		return JSON.stringify(thing, void null, '\t') + '\n';
 	} catch (error) {

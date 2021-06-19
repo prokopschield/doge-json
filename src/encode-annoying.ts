@@ -9,7 +9,7 @@ import { normalize_object } from './normalize-object';
  * @param thing Some thing
  * @returns the JSON reprezentation of the thing
  */
-export function encode_annoying (thing: unknown): string {
+export function encode_annoying (thing: any): string {
 	if (
 		(typeof thing === 'boolean')
 	||	(typeof thing === 'number')

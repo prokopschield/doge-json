@@ -1,22 +1,18 @@
 import fs from './fs-polyfill';
 
-import {
-	basename,
-	resolve,
-} from 'path';
+import { basename, resolve } from 'path';
 
 /**
  * Read and parse a JSON file
  * @param file path to file
  * @returns the object
  */
-export function read (file: string): any {
+export function read(file: string): any {
 	try {
 		if (!fs.existsSync(file)) {
 			const dir = resolve(file, '..');
 			const base = basename(file);
-			const rd = fs.readdirSync(dir)
-			.filter(a => a.includes(base))
+			const rd = fs.readdirSync(dir).filter((a) => a.includes(base));
 			if (rd.length) {
 				for (const filename of rd) {
 					const tfile = resolve(dir, filename);

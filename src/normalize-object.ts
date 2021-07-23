@@ -17,17 +17,15 @@ export type Normalized = NormalizedObject | NormalizedArray;
  * @param stack Ignore this parameter
  * @returns a normalized object
  */
-export function normalize_object (o: object, stack?: object[]): Normalized {
+export function normalize_object(o: object, stack?: object[]): Normalized {
 	if (!stack) stack = [];
 	if (o instanceof Array) {
-		return o.map(a => (
-			(typeof a === 'object')
-			? normalize_object(a)
-			: decode(encode(a))
-		));
+		return o.map((a) =>
+			typeof a === 'object' ? normalize_object(a) : decode(encode(a))
+		);
 	} else {
 		const normalized: NormalizedObject = {};
-		for (const [ field, value ] of Object.entries(o)) {
+		for (const [field, value] of Object.entries(o)) {
 			if (typeof value === 'object') {
 				if (stack.includes(value)) {
 					normalized[field] = '<< RECURSION >>';

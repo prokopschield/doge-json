@@ -1,10 +1,10 @@
-export { encode } from './encode';
-export { decode } from './decode';
+import decode from './decode';
 
-export { normalize_object } from './normalize-object';
+import { encode, normalize_object } from './normalize-and-encode';
 
-export { read } from './read';
-export { write } from './write';
+import read from './read';
+import write from './write';
 
 import fs from './fs-polyfill';
-export { fs };
+
+export = { encode, decode, fs, normalize_object, read, write };

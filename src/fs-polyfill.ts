@@ -26,10 +26,9 @@ if (typeof window === 'object' && window.localStorage) {
 	}
 }
 
-export default fs;
-module.exports = fs;
-
-Object.assign(fs, {
-	default: fs,
-	fs,
+Object.defineProperties(fs, {
+	default: { get: () => fs },
+	fs: { get: () => fs },
 });
+
+export = fs;

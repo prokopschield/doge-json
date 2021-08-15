@@ -7,7 +7,7 @@ import { basename, resolve } from 'path';
  * @param file path to file
  * @returns the object
  */
-export function read(file: string): any {
+function read(file: string): any {
 	try {
 		if (!fs.existsSync(file)) {
 			const dir = resolve(file, '..');
@@ -36,10 +36,9 @@ export function read(file: string): any {
 	}
 }
 
-export default read;
-module.exports = read;
-
-Object.assign(read, {
-	default: read,
-	read,
+Object.defineProperties(read, {
+	default: { get: () => read },
+	read: { get: () => read },
 });
+
+export = read;

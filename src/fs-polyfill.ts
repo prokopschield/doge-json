@@ -26,9 +26,12 @@ if (typeof window === 'object' && window.localStorage) {
 	}
 }
 
-Object.defineProperties(fs, {
-	default: { get: () => fs },
-	fs: { get: () => fs },
-});
+if (!Object.getOwnPropertyNames(fs).includes('default')) {
+	Object.defineProperty(fs, 'default', { get: () => fs });
+}
+
+if (!Object.getOwnPropertyNames(fs).includes('fs')) {
+	Object.defineProperty(fs, 'fs', { get: () => fs });
+}
 
 export = fs;

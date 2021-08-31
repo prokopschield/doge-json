@@ -12,7 +12,7 @@ function read(file: string): any {
 		if (!fs.existsSync(file)) {
 			const dir = resolve(file, '..');
 			const base = basename(file);
-			const rd = fs.readdirSync(dir).filter((a) => a.includes(base));
+			const rd = fs.readdirSync(dir).filter((a: string) => a.includes(base));
 			if (rd.length) {
 				for (const filename of rd) {
 					const tfile = resolve(dir, filename);
@@ -25,7 +25,7 @@ function read(file: string): any {
 			}
 		}
 		if (fs.existsSync(file)) {
-			var data = fs.readFileSync(file, 'utf-8');
+			var data = fs.readFileSync(file)?.toString() || 'null';
 			try {
 				data = JSON.parse(data);
 			} catch (e) {}

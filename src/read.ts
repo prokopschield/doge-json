@@ -1,6 +1,6 @@
 import fs from './fs-polyfill';
 
-import { basename, resolve } from 'path';
+import path from 'path';
 
 /**
  * Read and parse a JSON file
@@ -10,12 +10,12 @@ import { basename, resolve } from 'path';
 function read(file: string): any {
 	try {
 		if (!fs.existsSync(file)) {
-			const dir = resolve(file, '..');
-			const base = basename(file);
+			const dir = path.resolve(file, '..');
+			const base = path.basename(file);
 			const rd = fs.readdirSync(dir).filter((a: string) => a.includes(base));
 			if (rd.length) {
 				for (const filename of rd) {
-					const tfile = resolve(dir, filename);
+					const tfile = path.resolve(dir, filename);
 					const stat = fs.statSync(tfile);
 					if (!stat.isDirectory()) {
 						file = tfile;

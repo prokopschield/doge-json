@@ -9,7 +9,7 @@ const fs: {
 		isDirectory: () => boolean;
 	};
 } =
-	typeof window === 'undefined'
+	typeof window === 'undefined' || typeof localStorage === 'undefined'
 		? require('fs')
 		: {
 				writeFileSync: (path: string, data: string) => {

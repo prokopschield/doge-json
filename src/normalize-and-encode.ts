@@ -29,7 +29,7 @@ export function normalize_object(o: object, stack?: object[]): Normalized {
 	} else {
 		const normalized: NormalizedObject = {};
 		for (const [field, value] of Object.entries(o)) {
-			if (typeof value === 'object') {
+			if (value && typeof value === 'object') {
 				if (stack.includes(value)) {
 					normalized[field] = '<< RECURSION >>';
 				} else {

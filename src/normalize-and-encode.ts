@@ -20,11 +20,13 @@ export type Normalized = NormalizedObject | NormalizedArray;
  * @param stack Ignore this parameter
  * @returns a normalized object
  */
-export function normalize_object(o: object, stack?: object[]): Normalized {
+export function normalize_object(o: object, stack: object[] = []): Normalized {
 	if (!stack) stack = [];
 	if (o instanceof Array) {
 		return o.map((a) =>
-			typeof a === 'object' ? normalize_object(a) : decode(encode(a))
+			typeof a === 'object'
+				? normalize_object(a, [...stack, o])
+				: decode(encode(a))
 		);
 	} else {
 		const normalized: NormalizedObject = {};
@@ -34,7 +36,13 @@ export function normalize_object(o: object, stack?: object[]): Normalized {
 					normalized[field] = '<< RECURSION >>';
 				} else {
 					stack.push(value);
-					normalized[field] = normalize_object(value, stack);
+					if (value instanceof Map) {
+						normalized[field] = normalize_object(map(value), stack);
+					} else if (value instanceof Set) {
+						normalized[field] = normalize_object(set(value), stack);
+					} else {
+						normalized[field] = normalize_object(value, stack);
+					}
 					stack.pop();
 				}
 			} else {

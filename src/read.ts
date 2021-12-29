@@ -12,7 +12,9 @@ function read(file: string): any {
 		if (!fs.existsSync(file)) {
 			const dir = path.resolve(file, '..');
 			const base = path.basename(file);
-			const rd = fs.readdirSync(dir).filter((a: string) => a.includes(base));
+			const rd = fs
+				.readdirSync(dir)
+				.filter((a: string) => a.includes(base));
 			if (rd.length) {
 				for (const filename of rd) {
 					const tfile = path.resolve(dir, filename);

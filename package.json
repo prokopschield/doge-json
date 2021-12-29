@@ -1,7 +1,7 @@
 {
 	"name": "doge-json",
 	"description": "Less verbose JSON read/write",
-	"version": "1.2.5",
+	"version": "1.2.6",
 	"main": "lib/index",
 	"author": "Prokop Schield",
 	"license": "GPL-3.0-or-later",

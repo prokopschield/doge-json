@@ -21,7 +21,7 @@ export type Normalized = NormalizedObject | NormalizedArray;
  * @returns a normalized object
  */
 export function normalize_object(o: object, stack: object[] = []): Normalized {
-	if (!stack) stack = [];
+	if (!stack?.length) stack = [o];
 	if (o instanceof Array) {
 		return o.map((a) =>
 			typeof a === 'object'

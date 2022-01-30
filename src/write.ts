@@ -11,7 +11,16 @@ function write(file: string, data: any) {
 	if (!file.includes('.')) file = `${file}.json`;
 	const directory = path.resolve(file, '..');
 	if (!fs.existsSync(directory)) fs.mkdirSync(directory, { recursive: true });
-	fs.writeFileSync(file, encode(data));
+	const data_str = encode(data);
+	try {
+		const current = fs.readFileSync(file).toString();
+		if (current === data_str) {
+			return;
+		}
+	} catch (error) {
+		// file probably doesn't exist
+	}
+	fs.writeFileSync(file, data_str);
 }
 
 Object.defineProperties(write, {

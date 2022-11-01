@@ -8,3 +8,5 @@ import write from './write';
 import fs from './fs-polyfill';
 
 export { encode, decode, fs, normalize_object, read, write };
+
+export default { encode, decode, fs, normalize_object, read, write };

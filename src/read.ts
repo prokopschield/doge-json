@@ -7,7 +7,7 @@ import path from 'path';
  * @param file path to file
  * @returns the object
  */
-function read(file: string): any {
+export function read(file: string): any {
 	try {
 		if (!fs.existsSync(file)) {
 			const dir = path.resolve(file, '..');
@@ -43,4 +43,4 @@ Object.defineProperties(read, {
 	read: { get: () => read },
 });
 
-export = read;
+export default read;

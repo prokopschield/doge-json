@@ -5,4 +5,4 @@ Object.defineProperties(normalize_object, {
 	normalize_object: { get: () => normalize_object },
 });
 
-export = normalize_object;
+export default normalize_object;

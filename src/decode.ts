@@ -3,7 +3,7 @@
  * @param json The JSON you wish to decode
  * @returns the decoded value
  */
-function decode(json: string) {
+export function decode(json: string) {
 	try {
 		return JSON.parse(json);
 	} catch (error) {
@@ -16,4 +16,4 @@ Object.defineProperties(decode, {
 	decode: { get: () => decode },
 });
 
-export = decode;
+export default decode;

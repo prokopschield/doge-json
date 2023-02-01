@@ -1,4 +1,4 @@
-const fs: {
+export const fs: {
 	writeFileSync: (path: string, data: string) => void;
 	existsSync: (path: string) => boolean;
 	readFileSync: (path: string) => string | Buffer;
@@ -33,4 +33,4 @@ const fs: {
 					isDirectory: () => !window.localStorage.getItem(path),
 				}),
 		  };
-export = fs;
+export default fs;

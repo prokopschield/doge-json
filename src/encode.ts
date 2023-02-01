@@ -5,4 +5,4 @@ Object.defineProperties(encode, {
 	encode: { get: () => encode },
 });
 
-export = encode;
+export default encode;

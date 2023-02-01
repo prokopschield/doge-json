@@ -7,7 +7,7 @@ import path from 'path';
  * @param file Path to file
  * @param data Data you want to write
  */
-function write(file: string, data: any) {
+export function write(file: string, data: any) {
 	if (!file.includes('.')) file = `${file}.json`;
 	const directory = path.resolve(file, '..');
 	if (!fs.existsSync(directory)) fs.mkdirSync(directory, { recursive: true });
@@ -28,4 +28,4 @@ Object.defineProperties(write, {
 	write: { get: () => write },
 });
 
-export = write;
+export default write;

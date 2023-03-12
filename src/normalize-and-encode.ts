@@ -24,7 +24,7 @@ export function normalize_object(o: object, stack: object[] = []): Normalized {
 	if (!stack?.length) stack = [o];
 	if (o instanceof Array) {
 		return o.map((a) =>
-			typeof a === 'object'
+			a && typeof a === 'object'
 				? normalize_object(a, [...stack, o])
 				: decode(encode(a))
 		);

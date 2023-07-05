@@ -21,6 +21,16 @@ export type Normalized = NormalizedObject | NormalizedArray;
  * @returns a normalized object
  */
 export function normalize_object(o: object, stack: object[] = []): Normalized {
+	if ('toJSON' in o) {
+		try {
+			const oo = o as { toJSON: () => object };
+
+			o = oo.toJSON() || o;
+		} catch {
+			// toJSON is not callable -> proceed normally
+		}
+	}
+
 	if (!stack?.length) stack = [o];
 	if (o instanceof Array) {
 		return o.map((a) =>

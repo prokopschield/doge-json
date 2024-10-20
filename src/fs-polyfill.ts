@@ -9,28 +9,29 @@ export const fs: {
 		isDirectory: () => boolean;
 	};
 } =
-	typeof window === 'undefined' || typeof localStorage === 'undefined'
+	typeof globalThis === 'undefined' ||
+	typeof globalThis.localStorage === 'undefined'
 		? require('fs')
 		: {
 				writeFileSync: (path: string, data: string) => {
-					window.localStorage.setItem(`doge-json_${path}`, data);
+					globalThis.localStorage.setItem(`doge-json_${path}`, data);
 				},
 				existsSync: (path: string) =>
-					`doge-json_${path}` in window.localStorage,
+					`doge-json_${path}` in globalThis.localStorage,
 				readFileSync: (path: string) =>
-					window.localStorage.getItem(`doge-json_${path}`) || '',
+					globalThis.localStorage.getItem(`doge-json_${path}`) || '',
 				readdirSync: (path: string) =>
-					Object.keys(window.localStorage)
+					Object.keys(globalThis.localStorage)
 						.filter((a) => a.includes(path))
 						.map((a) => a.slice(a.indexOf(path) + path.length)),
 				mkdirSync: (path: string) =>
-					window.localStorage.setItem(
+					globalThis.localStorage.setItem(
 						`doge-json_${path}`,
 						JSON.stringify(fs.readdirSync(path))
 					),
 				statSync: (path: string) => ({
-					isFile: () => !!window.localStorage.getItem(path),
-					isDirectory: () => !window.localStorage.getItem(path),
+					isFile: () => !!globalThis.localStorage.getItem(path),
+					isDirectory: () => !globalThis.localStorage.getItem(path),
 				}),
 		  };
 export default fs;
